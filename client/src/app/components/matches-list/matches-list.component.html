@@ -1,0 +1,13 @@
+<nb-card class="page-container" accent="info">
+    <nb-card-header>
+      Matches
+    </nb-card-header>
+    <nb-card-body>
+      <div class="matches-list">
+        <div *ngFor="let match of matches">
+          <app-match-details class="page-container" [match]="match"></app-match-details>
+        </div>
+      </div>
+    </nb-card-body>
+  </nb-card>
+  

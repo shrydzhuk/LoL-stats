@@ -1,0 +1,14 @@
+<Project Sdk="Microsoft.NET.Sdk">
+
+  <PropertyGroup>
+    <TargetFramework>net6.0</TargetFramework>
+    <ImplicitUsings>enable</ImplicitUsings>
+    <Nullable>enable</Nullable>
+  </PropertyGroup>
+
+  <ItemGroup>
+    <ProjectReference Include="..\LoL.Stats.Domain\LoL.Stats.Domain.csproj" />
+    <ProjectReference Include="..\LoL.Stats.Riot.Api\LoL.Stats.Riot.Api.csproj" />
+  </ItemGroup>
+
+</Project>

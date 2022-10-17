@@ -1,0 +1,20 @@
+<nb-card *ngIf="match" class="page-container {{ match.win ? 'victory' : 'loss' }}">
+  <nb-card-body class="details-container">
+    <div class="general-info">
+      <div class="mode">
+        <span class="subtitle">Ranked Solo</span>
+        <span class="caption">{{ match.date | timeSince }}</span>
+      </div>
+      <div class="match-result">
+        <span class="result-text">{{ match.win ? 'Victory' : 'Defeat' }}</span>
+        <span class="caption">{{ match.duration | duration }}</span>
+      </div>
+    </div>
+
+    <app-champion-details class="champion" [champion]="match.champion"></app-champion-details>
+    <app-kda class="kda" [kills]="match.kills" [assists]="match.assists" [deaths]="match.deaths"></app-kda>
+    <app-summoner-stats class="summoner-stats" [lane]="match.lane" [role]="match.role"
+      [totalDamageDealtToChampions]="match.totalDamageDealtToChampions"></app-summoner-stats>
+    <app-teams class="teams" [teams]="match.teams"></app-teams>
+  </nb-card-body>
+</nb-card>

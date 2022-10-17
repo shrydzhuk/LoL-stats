@@ -1,0 +1,24 @@
+<nb-card class="page-container">
+  <div class="form-control-group">
+    <label class="label" for="input-name">Name:</label>
+    <div class="search-container">
+      <input nbInput [(ngModel)]="name" #nameInput="ngModel" id="input-name" placeholder="Enter Summoner's name"
+        fullWidth fieldSize="large"
+        [status]="nameInput.dirty || nameInput.touched ? (nameInput.invalid  ? 'danger' : 'success') : 'basic'"
+        [required]="true" [attr.aria-invalid]="nameInput.invalid && nameInput.touched ? true : null">
+
+      <nb-select placeholder="Number of matches" [(ngModel)]="matchesCount">
+        <nb-option value="5">5</nb-option>
+        <nb-option value="10">10</nb-option>
+        <nb-option value="20">20</nb-option>
+      </nb-select>
+
+      <button nbButton status="primary" (click)="getMatches(name)">
+        <span>Get Matches</span>
+      </button>
+    </div>
+  </div>
+
+  <app-matches-list class="matches-list-container" *ngIf="matches$ | async; let matches" [matches]="matches">
+  </app-matches-list>
+</nb-card>

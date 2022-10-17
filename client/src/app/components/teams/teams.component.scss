@@ -1,0 +1,43 @@
+@import '~bootstrap/scss/mixins/breakpoints';
+@import '~@nebular/theme/styles/global/breakpoints';
+
+.main-container {
+  height: 100%;
+  width: 100%;
+  display: flex;
+  flex-direction: row;
+  justify-content: start;
+  align-items: center;
+  gap: 10px;
+}
+
+.team {
+  display: flex;
+  flex-direction: column;
+  gap: 3px;
+  flex: 1;
+}
+
+.participant-container {
+  display: flex;
+  justify-content: start;
+  align-items: center;
+  gap: 3px;
+}
+
+.champion-image {
+  height: 16px;
+  width: 16px;
+  border-radius: 20%;
+}
+
+.nickname {
+  white-space: nowrap;
+  text-overflow: ellipsis;
+  overflow-x: hidden;
+  width: 100px;
+
+  @include media-breakpoint-down(md) {
+    width: 50px;
+  }
+}

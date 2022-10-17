@@ -1,0 +1,33 @@
+@import '~bootstrap/scss/mixins/breakpoints';
+@import '~@nebular/theme/styles/global/breakpoints';
+
+.logo-container {
+  display: flex;
+  align-items: center;
+  width: max-content;
+}
+
+.header-container {
+  display: flex;
+  align-items: center;
+  width: auto;
+}
+
+.logo {
+  padding: 0 1.25rem;
+  font-size: 1.35rem;
+  white-space: nowrap;
+  text-decoration: none;
+}
+
+@include media-breakpoint-down(sm) {
+  .logo {
+    font-size: 1rem;
+  }
+}
+
+@include media-breakpoint-down(is) {
+  .logo {
+    font-size: 0.9rem;
+  }
+}
