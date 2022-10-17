@@ -6,7 +6,7 @@ import { AppRoutingModule } from './app-routing.module';
 import { AppComponent } from './app.component';
 import { ApiService } from './services/api.service';
 import { FormsModule, ReactiveFormsModule } from '@angular/forms';
-import { NbButtonModule, NbCardModule, NbGlobalPhysicalPosition, NbInputModule, NbLayoutModule, NbSelectModule, NbThemeModule, NbToastrModule, NbUserModule } from '@nebular/theme';
+import { NbButtonModule, NbCardModule, NbGlobalPhysicalPosition, NbInputModule, NbLayoutModule, NbSelectModule, NbThemeModule, NbToastrModule, NbTooltipModule, NbUserModule } from '@nebular/theme';
 import { NbEvaIconsModule } from '@nebular/eva-icons';
 import { HeaderComponent } from './components/header/header.component';
 import { SummonersMatchesComponent } from './pages/summoners-matches/summoners-matches.component';
@@ -56,7 +56,8 @@ const toastrConfig = {
     NbSelectModule,
     NbButtonModule,
     NbToastrModule.forRoot(toastrConfig),
-    NbUserModule
+    NbUserModule,
+    NbTooltipModule
   ],
   providers: [ApiService],
   bootstrap: [AppComponent]
