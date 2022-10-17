@@ -1,6 +1,7 @@
 import { Component, OnDestroy, OnInit } from '@angular/core';
 import { NbToastrService } from '@nebular/theme';
-import { Subscription } from 'rxjs';
+import { Observable, Subscription } from 'rxjs';
+import { ISummonerMatch } from 'src/app/models/matches/summonerMatch';
 import { ISummoner } from 'src/app/models/summoners/summoner';
 import { ApiService } from 'src/app/services/api.service';
 import { Endpoints } from 'src/app/utils/endpoints';
@@ -13,7 +14,8 @@ import { Endpoints } from 'src/app/utils/endpoints';
 export class SummonersMatchesComponent implements OnInit, OnDestroy {
   public name: string = '';
   public matchesCount: number = 5;
-
+  public matches$: Observable<ISummonerMatch[]>;
+  
   private summonerSubscription: Subscription;
 
   constructor(
@@ -36,9 +38,7 @@ export class SummonersMatchesComponent implements OnInit, OnDestroy {
         return;
       }
 
-      console.log(summoner);
-
-      // TODO: Get Matches by Summoner's PUUID
+      this.matches$ = this.apiService.get<ISummonerMatch[]>(`${Endpoints.Summoners}/${summoner.puuid}/matches?count=${this.matchesCount}`);
     }, (error) => {
       this.showSummonerNotFound();
     });
