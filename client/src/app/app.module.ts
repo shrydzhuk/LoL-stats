@@ -6,11 +6,17 @@ import { AppRoutingModule } from './app-routing.module';
 import { AppComponent } from './app.component';
 import { ApiService } from './services/api.service';
 import { FormsModule, ReactiveFormsModule } from '@angular/forms';
-import { NbButtonModule, NbCardModule, NbInputModule, NbLayoutModule, NbSelectModule, NbThemeModule } from '@nebular/theme';
+import { NbButtonModule, NbCardModule, NbGlobalPhysicalPosition, NbInputModule, NbLayoutModule, NbSelectModule, NbThemeModule, NbToastrModule } from '@nebular/theme';
 import { NbEvaIconsModule } from '@nebular/eva-icons';
 import { HeaderComponent } from './components/header/header.component';
 import { SummonersMatchesComponent } from './pages/summoners-matches/summoners-matches.component';
 import { MatchesListComponent } from './components/matches-list/matches-list.component';
+
+const toastrConfig = {
+  duration: 5000,
+  position: NbGlobalPhysicalPosition.TOP_RIGHT,
+  preventDuplicates: true,
+};
 
 @NgModule({
   declarations: [	
@@ -32,7 +38,8 @@ import { MatchesListComponent } from './components/matches-list/matches-list.com
     NbCardModule,
     NbInputModule,
     NbSelectModule,
-    NbButtonModule
+    NbButtonModule,
+    NbToastrModule.forRoot(toastrConfig),
   ],
   providers: [ApiService],
   bootstrap: [AppComponent]

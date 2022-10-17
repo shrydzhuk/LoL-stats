@@ -6,13 +6,13 @@ using System.Threading.Tasks;
 namespace LoL.Stats.Api.Controllers
 {
     [ApiController]
-    [Route("[controller]")]
-    public class SummonerController : ControllerBase
+    [Route("api/[controller]")]
+    public class SummonersController : ControllerBase
     {
         private readonly ISummonersService summonersService;
         private readonly IMatchesService matchesService;
 
-        public SummonerController(ISummonersService summonersService, IMatchesService matchesService)
+        public SummonersController(ISummonersService summonersService, IMatchesService matchesService)
         {
             this.summonersService = summonersService;
             this.matchesService = matchesService;
