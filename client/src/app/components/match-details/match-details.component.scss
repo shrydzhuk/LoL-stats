@@ -1,0 +1,66 @@
+@import '~bootstrap/scss/mixins/breakpoints';
+@import '~@nebular/theme/styles/global/breakpoints';
+
+span {
+  color: #9c9fb1;
+}
+
+.page-container {
+  height: 100%;
+  width: 100%;
+  margin-bottom: 0;
+}
+
+.details-container {
+  display: flex;
+  flex-direction: row;
+  justify-content: space-evenly;
+}
+
+.general-info {
+  display: flex;
+  flex-direction: column;
+  flex: 1;
+  margin-right: 2rem;
+  gap: 3px;
+  justify-content: center;
+}
+
+.victory {
+  background-color: #3a4d74;
+
+  .mode {
+    border-bottom: 1px solid #323c5e;
+  }
+
+  .mode-text {
+    color: #697fd4;
+  }
+}
+
+.loss {
+  background-color: #74323d;
+
+  .mode {
+    border-bottom: 1px solid #613e44;
+  }
+
+  .mode-text {
+    color: #cc515a;
+  }
+}
+
+.mode {
+  display: flex;
+  flex-direction: column;
+  padding-bottom: 5px;
+}
+
+.match-result {
+  display: flex;
+  flex-direction: column;
+}
+
+.result-text {
+  font-weight: 600;
+}

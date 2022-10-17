@@ -1,0 +1,14 @@
+<nb-card *ngIf="match" class="page-container {{ match.win ? 'victory' : 'loss' }}">
+  <nb-card-body class="details-container">
+    <div class="general-info">
+      <div class="mode">
+        <span class="mode-text">Ranked Solo</span>
+        <span class="caption">{{ match.date }}</span>
+      </div>
+      <div class="match-result">
+        <span class="result-text">{{ match.win ? 'Victory' : 'Defeat' }}</span>
+        <span class="caption">{{ match.duration }}</span>
+      </div>
+    </div>
+  </nb-card-body>
+</nb-card>

@@ -11,6 +11,7 @@ import { NbEvaIconsModule } from '@nebular/eva-icons';
 import { HeaderComponent } from './components/header/header.component';
 import { SummonersMatchesComponent } from './pages/summoners-matches/summoners-matches.component';
 import { MatchesListComponent } from './components/matches-list/matches-list.component';
+import { MatchDetailsComponent } from './components/match-details/match-details.component';
 
 const toastrConfig = {
   duration: 5000,
@@ -19,12 +20,13 @@ const toastrConfig = {
 };
 
 @NgModule({
-  declarations: [	
+  declarations: [
     AppComponent,
     HeaderComponent,
     SummonersMatchesComponent,
-    MatchesListComponent
-   ],
+    MatchesListComponent,
+    MatchDetailsComponent
+  ],
   imports: [
     BrowserModule,
     BrowserAnimationsModule,
