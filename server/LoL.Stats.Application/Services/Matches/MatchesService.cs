@@ -1,4 +1,5 @@
-﻿using LoL.Stats.Domain.Models.Champions;
+﻿using LoL.Stats.Application.Utils;
+using LoL.Stats.Domain.Models.Champions;
 using LoL.Stats.Domain.Models.Matches;
 using LoL.Stats.Riot.Api.Dtos;
 using LoL.Stats.Riot.Api.Services.Matches;
@@ -59,10 +60,12 @@ namespace LoL.Stats.Application.Services.Matches
                 Name = summoner.SummonerName,
                 Date = DateTimeOffset.FromUnixTimeMilliseconds(riotMatch.Info.GameCreation).UtcDateTime,
                 Duration = riotMatch.Info.GameDuration,
+                Teams = riotMatch.GetTeams(),
                 Champion = new SummonerChampion()
                 {
                     Name = summoner.ChampionName,
-                    Level = summoner.ChampLevel
+                    Level = summoner.ChampLevel,
+                    Items = summoner.GetItems()
                 }
             };
 
