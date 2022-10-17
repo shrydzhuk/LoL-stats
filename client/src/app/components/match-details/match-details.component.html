@@ -10,5 +10,8 @@
         <span class="caption">{{ match.duration | duration }}</span>
       </div>
     </div>
+
+    <app-kda [kills]="match.kills" [assists]="match.assists" [deaths]="match.deaths">
+    </app-kda>
   </nb-card-body>
 </nb-card>

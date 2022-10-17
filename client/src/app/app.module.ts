@@ -14,6 +14,7 @@ import { MatchesListComponent } from './components/matches-list/matches-list.com
 import { MatchDetailsComponent } from './components/match-details/match-details.component';
 import { DurationPipe } from './pipes/duration.pipe';
 import { TimeSincePipe } from './pipes/timeSince.pipe';
+import { KdaComponent } from './components/kda/kda.component';
 
 const toastrConfig = {
   duration: 5000,
@@ -29,7 +30,8 @@ const toastrConfig = {
     MatchesListComponent,
     MatchDetailsComponent,
     DurationPipe,
-    TimeSincePipe
+    TimeSincePipe,
+    KdaComponent
   ],
   imports: [
     BrowserModule,

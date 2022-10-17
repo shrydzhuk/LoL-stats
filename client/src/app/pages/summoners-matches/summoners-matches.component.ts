@@ -12,7 +12,7 @@ import { Endpoints } from 'src/app/utils/endpoints';
   styleUrls: ['./summoners-matches.component.scss']
 })
 export class SummonersMatchesComponent implements OnInit, OnDestroy {
-  public name: string = '';
+  public name: string = 'Doublelift';
   public matchesCount: number = 5;
   public matches$: Observable<ISummonerMatch[]>;
   
