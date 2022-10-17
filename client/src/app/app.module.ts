@@ -6,16 +6,18 @@ import { AppRoutingModule } from './app-routing.module';
 import { AppComponent } from './app.component';
 import { ApiService } from './services/api.service';
 import { FormsModule, ReactiveFormsModule } from '@angular/forms';
-import { NbCardModule, NbLayoutModule, NbThemeModule } from '@nebular/theme';
+import { NbButtonModule, NbCardModule, NbInputModule, NbLayoutModule, NbSelectModule, NbThemeModule } from '@nebular/theme';
 import { NbEvaIconsModule } from '@nebular/eva-icons';
 import { HeaderComponent } from './components/header/header.component';
 import { SummonersMatchesComponent } from './pages/summoners-matches/summoners-matches.component';
+import { MatchesListComponent } from './components/matches-list/matches-list.component';
 
 @NgModule({
   declarations: [	
     AppComponent,
     HeaderComponent,
-    SummonersMatchesComponent
+    SummonersMatchesComponent,
+    MatchesListComponent
    ],
   imports: [
     BrowserModule,
@@ -27,7 +29,10 @@ import { SummonersMatchesComponent } from './pages/summoners-matches/summoners-m
     NbThemeModule.forRoot({ name: 'dark' }),
     NbLayoutModule,
     NbEvaIconsModule,
-    NbCardModule
+    NbCardModule,
+    NbInputModule,
+    NbSelectModule,
+    NbButtonModule
   ],
   providers: [ApiService],
   bootstrap: [AppComponent]
