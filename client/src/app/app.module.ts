@@ -16,6 +16,8 @@ import { DurationPipe } from './pipes/duration.pipe';
 import { TimeSincePipe } from './pipes/timeSince.pipe';
 import { KdaComponent } from './components/kda/kda.component';
 import { ChampionDetailsComponent } from './components/champion-details/champion-details.component';
+import { SummonerStatsComponent } from './components/summoner-stats/summoner-stats.component';
+import { FormatStringPipe } from './pipes/formatString.pipe';
 
 const toastrConfig = {
   duration: 5000,
@@ -33,7 +35,9 @@ const toastrConfig = {
     DurationPipe,
     TimeSincePipe,
     KdaComponent,
-    ChampionDetailsComponent
+    ChampionDetailsComponent,
+    SummonerStatsComponent,
+    FormatStringPipe
   ],
   imports: [
     BrowserModule,

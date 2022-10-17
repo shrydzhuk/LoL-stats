@@ -1,0 +1,17 @@
+span {
+  color: #9999ab;
+}
+
+.page-container {
+  height: 100%;
+  width: 100%;
+  display: flex;
+  flex-direction: column;
+  justify-content: start;
+  align-items: center;
+  gap: 10px;
+}
+
+.stats {
+  font-weight: 600;
+}
