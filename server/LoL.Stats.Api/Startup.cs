@@ -1,5 +1,7 @@
+using LoL.Stats.Application.PreProcessors;
 using LoL.Stats.Application.Services.Matches;
 using LoL.Stats.Application.Services.Summoners;
+using LoL.Stats.Domain;
 using LoL.Stats.Domain.MappingProfiles;
 using LoL.Stats.Riot.Api;
 using Microsoft.AspNetCore.Builder;
@@ -7,7 +9,10 @@ using Microsoft.AspNetCore.Hosting;
 using Microsoft.Extensions.Configuration;
 using Microsoft.Extensions.DependencyInjection;
 using Microsoft.Extensions.Hosting;
+using Microsoft.Extensions.Options;
 using Microsoft.OpenApi.Models;
+using System.IO;
+using System.Reflection;
 
 namespace LoL.Stats.Api
 {
@@ -33,12 +38,18 @@ namespace LoL.Stats.Api
 
             services.AddScoped<ISummonersService, SummonersService>();
             services.AddScoped<IMatchesService, MatchesService>();
+            services.AddSingleton<IStaticInfoHandler, StaticInfoHandler>();
+            services.Configure<StaticFilesOptions>(Configuration.GetSection("StaticFiles"));
 
             RiotConfiguration.SetApiKey(Configuration["RiotApiKey"]);
         }
 
         // This method gets called by the runtime. Use this method to configure the HTTP request pipeline.
-        public void Configure(IApplicationBuilder app, IWebHostEnvironment env)
+        public void Configure(
+            IApplicationBuilder app,
+            IWebHostEnvironment env,
+            IStaticInfoHandler staticInfoHandler,
+            IOptions<StaticFilesOptions> staticFilesOptions)
         {
             if (env.IsDevelopment())
             {
@@ -55,6 +66,19 @@ namespace LoL.Stats.Api
             {
                 endpoints.MapControllers();
             });
+
+            LoadStaticInfo(staticInfoHandler, staticFilesOptions);
+        }
+
+        private void LoadStaticInfo(
+            IStaticInfoHandler staticInfoHandler,
+            IOptions<StaticFilesOptions> staticFilesOptions)
+        {
+            string fullPath = Assembly.GetAssembly(typeof(Startup)).Location;
+            string directory = Path.GetDirectoryName(fullPath);
+
+            staticInfoHandler.LoadChampionsInfo($"{directory}\\{staticFilesOptions.Value.ChampionsInfoFile}");
+            staticInfoHandler.LoadItemsInfo($"{directory}\\{staticFilesOptions.Value.ItemsInfoFile}");
         }
     }
 }

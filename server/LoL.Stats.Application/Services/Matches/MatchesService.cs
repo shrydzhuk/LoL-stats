@@ -1,4 +1,5 @@
-﻿using LoL.Stats.Application.Utils;
+﻿using LoL.Stats.Application.PreProcessors;
+using LoL.Stats.Application.Utils;
 using LoL.Stats.Domain.Models.Champions;
 using LoL.Stats.Domain.Models.Matches;
 using LoL.Stats.Riot.Api.Dtos;
@@ -8,11 +9,13 @@ namespace LoL.Stats.Application.Services.Matches
 {
     public class MatchesService : IMatchesService
     {
-        private IMatchesApiService apiService;
+        private readonly IStaticInfoHandler staticInfoHandler;
+        private readonly IMatchesApiService apiService;
 
-        public MatchesService()
+        public MatchesService(IStaticInfoHandler staticInfoHandler)
         {
             apiService = new MatchesApiService();
+            this.staticInfoHandler = staticInfoHandler;
         }
 
         public async Task<IEnumerable<SummonerMatch>> GetMatches(string puuid, int count)
@@ -48,6 +51,8 @@ namespace LoL.Stats.Application.Services.Matches
                 return null;
             }
 
+            var championInfo = staticInfoHandler.GetChampionInfo(summoner.ChampionName);
+
             var match = new SummonerMatch()
             {
                 Kills = summoner.Kills,
@@ -65,7 +70,13 @@ namespace LoL.Stats.Application.Services.Matches
                 {
                     Name = summoner.ChampionName,
                     Level = summoner.ChampLevel,
-                    Items = summoner.GetItems()
+                    Items = summoner.GetItems(staticInfoHandler),
+                    Image = championInfo?.Image?.Full,
+                    Spells = championInfo?.Spells?.Select(x => new Spell()
+                    {
+                        Name = x.Name,
+                        Image = x.Image?.Full
+                    }),
                 }
             };
 

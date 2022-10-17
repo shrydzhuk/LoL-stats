@@ -1,4 +1,5 @@
-﻿using LoL.Stats.Domain.Models.Champions;
+﻿using LoL.Stats.Application.PreProcessors;
+using LoL.Stats.Domain.Models.Champions;
 using LoL.Stats.Riot.Api.Models.Matches;
 using Participant = LoL.Stats.Domain.Models.Matches.Participant;
 using Team = LoL.Stats.Domain.Models.Matches.Team;
@@ -22,8 +23,10 @@ namespace LoL.Stats.Application.Utils
             return teams;
         }
 
-        public static Participant ToDomainParticipant(this Riot.Api.Models.Matches.Participant riotParticipant)
+        public static Participant ToDomainParticipant(this Riot.Api.Models.Matches.Participant riotParticipant, IStaticInfoHandler staticInfoHandler = null)
         {
+            var championImage = staticInfoHandler?.GetChampionInfo(riotParticipant.ChampionName)?.Image?.Full;
+
             return new Participant()
             {
                 Name = riotParticipant.SummonerName,
@@ -31,31 +34,40 @@ namespace LoL.Stats.Application.Utils
                 {
                     Name = riotParticipant.ChampionName,
                     Level = riotParticipant.ChampLevel,
-                    Image = null // TODO: Get image name from static files
+                    Image = championImage
                 }
             };
         }
 
-        public static IEnumerable<Item> GetItems(this Riot.Api.Models.Matches.Participant riotParticipant)
+        public static IEnumerable<Item> GetItems(this Riot.Api.Models.Matches.Participant riotParticipant, IStaticInfoHandler staticInfoHandler)
         {
             var items = new List<Item>()
             {
-                GetItem(riotParticipant.Item0),
-                GetItem(riotParticipant.Item1),
-                GetItem(riotParticipant.Item2),
-                GetItem(riotParticipant.Item3),
-                GetItem(riotParticipant.Item4),
-                GetItem(riotParticipant.Item5),
-                GetItem(riotParticipant.Item6)
+                GetItem(riotParticipant.Item0, staticInfoHandler),
+                GetItem(riotParticipant.Item1, staticInfoHandler),
+                GetItem(riotParticipant.Item2, staticInfoHandler),
+                GetItem(riotParticipant.Item3, staticInfoHandler),
+                GetItem(riotParticipant.Item4, staticInfoHandler),
+                GetItem(riotParticipant.Item5, staticInfoHandler),
+                GetItem(riotParticipant.Item6, staticInfoHandler)
             };
 
             return items.Where(x => x != null);
         }
 
-        private static Item GetItem(int itemId)
+        private static Item GetItem(int itemId, IStaticInfoHandler staticInfoHandler)
         {
-            // TODO: Get info from static files
-            return null;
+            var itemInfo = staticInfoHandler.GetItemInfo(itemId);
+            if (itemInfo == null)
+            {
+                return null;
+            }
+
+            return new Item()
+            {
+                Name = itemInfo.Name,
+                Image = itemInfo.Image?.Full
+            };
         }
     }
 }

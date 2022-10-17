@@ -15,4 +15,13 @@
     <ProjectReference Include="..\LoL.Stats.Application\LoL.Stats.Application.csproj" />
   </ItemGroup>
 
+  <ItemGroup>
+    <Content Update="StaticFiles\championFull.json">
+      <CopyToOutputDirectory>Always</CopyToOutputDirectory>
+    </Content>
+    <Content Update="StaticFiles\item.json">
+      <CopyToOutputDirectory>Always</CopyToOutputDirectory>
+    </Content>
+  </ItemGroup>
+
 </Project>
