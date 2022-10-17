@@ -8,7 +8,7 @@ namespace LoL.Stats.Application.Utils
 {
     public static class MatchExtensions
     {
-        public static IEnumerable<Team> GetTeams(this Match match)
+        public static IEnumerable<Team> GetTeams(this Match match, IStaticInfoHandler staticInfoHandler)
         {
             var teams = new List<Team>();
             var groupedByTeams = match.Info.Participants.GroupBy(x => x.TeamId).ToDictionary(x => x.Key, x => x.ToList());
@@ -16,7 +16,7 @@ namespace LoL.Stats.Application.Utils
             {
                 teams.Add(new Team()
                 {
-                    Participants = new List<Participant>(teamGroup.Value.Select(x => x.ToDomainParticipant()))
+                    Participants = new List<Participant>(teamGroup.Value.Select(x => x.ToDomainParticipant(staticInfoHandler)))
                 });
             }
 

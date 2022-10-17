@@ -65,7 +65,7 @@ namespace LoL.Stats.Application.Services.Matches
                 Name = summoner.SummonerName,
                 Date = DateTimeOffset.FromUnixTimeMilliseconds(riotMatch.Info.GameCreation).UtcDateTime,
                 Duration = riotMatch.Info.GameDuration,
-                Teams = riotMatch.GetTeams(),
+                Teams = riotMatch.GetTeams(staticInfoHandler),
                 Champion = new SummonerChampion()
                 {
                     Name = summoner.ChampionName,
