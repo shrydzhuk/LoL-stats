@@ -7,9 +7,9 @@ namespace LoL.Stats.Application.Services.Matches
     {
         private readonly IMatchesApiService matchesApiService;
 
-        public MatchesService(IMatchesApiService matchesApiService)
+        public MatchesService()
         {
-            this.matchesApiService = matchesApiService;
+            matchesApiService = new MatchesApiService();
         }
 
         public Task<IEnumerable<SummonerMatch>> GetMatches(string puuid, int count)

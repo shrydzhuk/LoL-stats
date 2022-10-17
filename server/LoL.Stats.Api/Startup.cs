@@ -1,4 +1,5 @@
 using LoL.Stats.Application.Services.Summoners;
+using LoL.Stats.Domain.MappingProfiles;
 using Microsoft.AspNetCore.Builder;
 using Microsoft.AspNetCore.Hosting;
 using Microsoft.Extensions.Configuration;
@@ -25,6 +26,8 @@ namespace LoL_stats
             {
                 c.SwaggerDoc("v1", new OpenApiInfo { Title = "LoL.Stats", Version = "v1" });
             });
+
+            services.AddAutoMapper(typeof(SummonersProfile));
 
             services.AddScoped<ISummonersService, SummonersService>();
         }

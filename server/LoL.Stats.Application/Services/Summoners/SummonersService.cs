@@ -1,4 +1,5 @@
-﻿using LoL.Stats.Domain.Models.Summoners;
+﻿using AutoMapper;
+using LoL.Stats.Domain.Models.Summoners;
 using LoL.Stats.Riot.Api.Services.Summoners;
 
 namespace LoL.Stats.Application.Services.Summoners
@@ -6,15 +7,18 @@ namespace LoL.Stats.Application.Services.Summoners
     public class SummonersService : ISummonersService
     {
         private readonly ISummonersApiService summonersApiService;
+        private readonly IMapper mapper;
 
-        public SummonersService(ISummonersApiService summonersApiService)
+        public SummonersService(IMapper mapper)
         {
-            this.summonersApiService = summonersApiService;
+            summonersApiService = new SummonersApiService();
+            this.mapper = mapper;
         }
 
-        public Task<Summoner> GetSummonerByNameAsync(string name)
+        public async Task<Summoner> GetSummonerByNameAsync(string name)
         {
-            throw new NotImplementedException();
+            var summoner = await summonersApiService.GetSummonerByNameAsync(name);
+            return mapper.Map<Summoner>(summoner);
         }
     }
 }
