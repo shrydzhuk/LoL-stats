@@ -15,6 +15,6 @@
     <app-kda class="kda" [kills]="match.kills" [assists]="match.assists" [deaths]="match.deaths"></app-kda>
     <app-summoner-stats class="summoner-stats" [lane]="match.lane" [role]="match.role"
       [totalDamageDealtToChampions]="match.totalDamageDealtToChampions"></app-summoner-stats>
-    <app-teams [teams]="match.teams"></app-teams>
+    <app-teams class="teams" [teams]="match.teams"></app-teams>
   </nb-card-body>
 </nb-card>
