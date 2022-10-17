@@ -18,6 +18,7 @@ import { KdaComponent } from './components/kda/kda.component';
 import { ChampionDetailsComponent } from './components/champion-details/champion-details.component';
 import { SummonerStatsComponent } from './components/summoner-stats/summoner-stats.component';
 import { FormatStringPipe } from './pipes/formatString.pipe';
+import { TeamsComponent } from './components/teams/teams.component';
 
 const toastrConfig = {
   duration: 5000,
@@ -37,7 +38,8 @@ const toastrConfig = {
     KdaComponent,
     ChampionDetailsComponent,
     SummonerStatsComponent,
-    FormatStringPipe
+    FormatStringPipe,
+    TeamsComponent
   ],
   imports: [
     BrowserModule,
