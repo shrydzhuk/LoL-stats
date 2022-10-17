@@ -11,6 +11,7 @@ using Microsoft.Extensions.DependencyInjection;
 using Microsoft.Extensions.Hosting;
 using Microsoft.Extensions.Options;
 using Microsoft.OpenApi.Models;
+using System;
 using System.IO;
 using System.Reflection;
 
@@ -84,11 +85,8 @@ namespace LoL.Stats.Api
             IStaticInfoHandler staticInfoHandler,
             IOptions<StaticFilesOptions> staticFilesOptions)
         {
-            string fullPath = Assembly.GetAssembly(typeof(Startup)).Location;
-            string directory = Path.GetDirectoryName(fullPath);
-
-            staticInfoHandler.LoadChampionsInfo($"{directory}\\{staticFilesOptions.Value.ChampionsInfoFile}");
-            staticInfoHandler.LoadItemsInfo($"{directory}\\{staticFilesOptions.Value.ItemsInfoFile}");
+            staticInfoHandler.LoadChampionsInfo($"./{staticFilesOptions.Value.ChampionsInfoFile}");
+            staticInfoHandler.LoadItemsInfo($"./{staticFilesOptions.Value.ItemsInfoFile}");
         }
     }
 }

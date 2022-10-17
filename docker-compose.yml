@@ -1,0 +1,21 @@
+version: '3'
+services:
+  app-service:
+    container_name: "lol.stats.app"
+    restart: always
+    build: ./client
+    volumes:
+      - ./nginx/nginx.conf:/etc/nginx/nginx.conf
+    ports:
+      - 80:80
+    links:
+      - api-service
+  api-service:
+    container_name: "lol.stats.api"
+    restart: always
+    build: ./server
+    environment:
+      - ASPNETCORE_ENVIRONMENT=Production
+      - ASPNETCORE_URLS=http://*:5000/
+    ports:
+      - 5000:5000
