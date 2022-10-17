@@ -12,6 +12,8 @@ import { HeaderComponent } from './components/header/header.component';
 import { SummonersMatchesComponent } from './pages/summoners-matches/summoners-matches.component';
 import { MatchesListComponent } from './components/matches-list/matches-list.component';
 import { MatchDetailsComponent } from './components/match-details/match-details.component';
+import { DurationPipe } from './pipes/duration.pipe';
+import { TimeSincePipe } from './pipes/timeSince.pipe';
 
 const toastrConfig = {
   duration: 5000,
@@ -25,7 +27,9 @@ const toastrConfig = {
     HeaderComponent,
     SummonersMatchesComponent,
     MatchesListComponent,
-    MatchDetailsComponent
+    MatchDetailsComponent,
+    DurationPipe,
+    TimeSincePipe
   ],
   imports: [
     BrowserModule,
