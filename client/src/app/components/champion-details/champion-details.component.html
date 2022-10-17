@@ -1,0 +1,18 @@
+<div class="page-container" *ngIf="champion">
+  <div class="champion-container">
+    <nb-user size="large" badgeText="{{champion.level}}" onlyPicture="true"
+      picture="/assets/images/champions/{{champion.image}}" badgePosition="bottom right">
+    </nb-user>
+    <div class="spells-container">
+      <img class="image" src="/assets/images/spells/{{champion.spells[0].image}}">
+      <img class="image" src="/assets/images/spells/{{champion.spells[1].image}}">
+    </div>
+    <div class="spells-container">
+      <img class="image" src="/assets/images/spells/{{champion.spells[2].image}}">
+      <img class="image" src="/assets/images/spells/{{champion.spells[3].image}}">
+    </div>
+  </div>
+  <div class="items-container">
+    <img *ngFor="let item of champion.items" class="image" src="/assets/images/items/{{item.image}}">
+  </div>
+</div>

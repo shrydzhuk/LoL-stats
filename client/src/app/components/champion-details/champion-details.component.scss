@@ -1,0 +1,35 @@
+.page-container {
+  height: 100%;
+  width: 100%;
+  display: flex;
+  flex-direction: column;
+  justify-content: center;
+  align-items: start;
+  gap: 10px;
+}
+
+.champion-container {
+  display: flex;
+  flex-direction: row;
+  gap: 3px;
+}
+
+.spells-container {
+  display: flex;
+  flex-direction: column;
+  align-items: center;
+  justify-content: center;
+  gap: 3px;
+}
+
+.image {
+  width: 22px;
+  height: 22px;
+  border-radius: 20%;
+}
+
+.items-container {
+  display: flex;
+  flex-direction: row;
+  gap: 3px;
+}

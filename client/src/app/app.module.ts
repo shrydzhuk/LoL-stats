@@ -6,7 +6,7 @@ import { AppRoutingModule } from './app-routing.module';
 import { AppComponent } from './app.component';
 import { ApiService } from './services/api.service';
 import { FormsModule, ReactiveFormsModule } from '@angular/forms';
-import { NbButtonModule, NbCardModule, NbGlobalPhysicalPosition, NbInputModule, NbLayoutModule, NbSelectModule, NbThemeModule, NbToastrModule } from '@nebular/theme';
+import { NbButtonModule, NbCardModule, NbGlobalPhysicalPosition, NbInputModule, NbLayoutModule, NbSelectModule, NbThemeModule, NbToastrModule, NbUserModule } from '@nebular/theme';
 import { NbEvaIconsModule } from '@nebular/eva-icons';
 import { HeaderComponent } from './components/header/header.component';
 import { SummonersMatchesComponent } from './pages/summoners-matches/summoners-matches.component';
@@ -15,6 +15,7 @@ import { MatchDetailsComponent } from './components/match-details/match-details.
 import { DurationPipe } from './pipes/duration.pipe';
 import { TimeSincePipe } from './pipes/timeSince.pipe';
 import { KdaComponent } from './components/kda/kda.component';
+import { ChampionDetailsComponent } from './components/champion-details/champion-details.component';
 
 const toastrConfig = {
   duration: 5000,
@@ -31,7 +32,8 @@ const toastrConfig = {
     MatchDetailsComponent,
     DurationPipe,
     TimeSincePipe,
-    KdaComponent
+    KdaComponent,
+    ChampionDetailsComponent
   ],
   imports: [
     BrowserModule,
@@ -48,6 +50,7 @@ const toastrConfig = {
     NbSelectModule,
     NbButtonModule,
     NbToastrModule.forRoot(toastrConfig),
+    NbUserModule
   ],
   providers: [ApiService],
   bootstrap: [AppComponent]

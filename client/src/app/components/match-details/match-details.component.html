@@ -2,7 +2,7 @@
   <nb-card-body class="details-container">
     <div class="general-info">
       <div class="mode">
-        <span class="mode-text">Ranked Solo</span>
+        <span class="subtitle">Ranked Solo</span>
         <span class="caption">{{ match.date | timeSince }}</span>
       </div>
       <div class="match-result">
@@ -11,6 +11,7 @@
       </div>
     </div>
 
+    <app-champion-details [champion]="match.champion"></app-champion-details>
     <app-kda [kills]="match.kills" [assists]="match.assists" [deaths]="match.deaths">
     </app-kda>
   </nb-card-body>
