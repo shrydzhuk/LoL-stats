@@ -1,15 +1,10 @@
+using LoL.Stats.Application.Services.Summoners;
 using Microsoft.AspNetCore.Builder;
 using Microsoft.AspNetCore.Hosting;
-using Microsoft.AspNetCore.Mvc;
 using Microsoft.Extensions.Configuration;
 using Microsoft.Extensions.DependencyInjection;
 using Microsoft.Extensions.Hosting;
-using Microsoft.Extensions.Logging;
 using Microsoft.OpenApi.Models;
-using System;
-using System.Collections.Generic;
-using System.Linq;
-using System.Threading.Tasks;
 
 namespace LoL_stats
 {
@@ -25,12 +20,13 @@ namespace LoL_stats
         // This method gets called by the runtime. Use this method to add services to the container.
         public void ConfigureServices(IServiceCollection services)
         {
-
             services.AddControllers();
             services.AddSwaggerGen(c =>
             {
-                c.SwaggerDoc("v1", new OpenApiInfo { Title = "LoL_stats", Version = "v1" });
+                c.SwaggerDoc("v1", new OpenApiInfo { Title = "LoL.Stats", Version = "v1" });
             });
+
+            services.AddScoped<ISummonersService, SummonersService>();
         }
 
         // This method gets called by the runtime. Use this method to configure the HTTP request pipeline.

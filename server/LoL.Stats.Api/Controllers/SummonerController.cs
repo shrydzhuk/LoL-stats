@@ -1,4 +1,5 @@
-﻿using Microsoft.AspNetCore.Mvc;
+﻿using LoL.Stats.Application.Services.Summoners;
+using Microsoft.AspNetCore.Mvc;
 
 namespace LoL_stats.Controllers
 {
@@ -6,5 +7,11 @@ namespace LoL_stats.Controllers
     [Route("[controller]")]
     public class SummonerController : ControllerBase
     {
+        private readonly ISummonersService summonersService;
+
+        public SummonerController(ISummonersService summonersService)
+        {
+            this.summonersService = summonersService;
+        }
     }
 }
