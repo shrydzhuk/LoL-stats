@@ -7,7 +7,7 @@ using System.Collections.Generic;
 using System.Linq;
 using System.Threading.Tasks;
 
-namespace LoL_stats
+namespace LoL.Stats.Api
 {
     public class Program
     {

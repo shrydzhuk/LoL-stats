@@ -3,7 +3,7 @@ using LoL.Stats.Application.Services.Summoners;
 using Microsoft.AspNetCore.Mvc;
 using System.Threading.Tasks;
 
-namespace LoL_stats.Controllers
+namespace LoL.Stats.Api.Controllers
 {
     [ApiController]
     [Route("[controller]")]

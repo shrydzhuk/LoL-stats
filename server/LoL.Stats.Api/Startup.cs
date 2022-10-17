@@ -1,5 +1,7 @@
+using LoL.Stats.Application.Services.Matches;
 using LoL.Stats.Application.Services.Summoners;
 using LoL.Stats.Domain.MappingProfiles;
+using LoL.Stats.Riot.Api;
 using Microsoft.AspNetCore.Builder;
 using Microsoft.AspNetCore.Hosting;
 using Microsoft.Extensions.Configuration;
@@ -7,7 +9,7 @@ using Microsoft.Extensions.DependencyInjection;
 using Microsoft.Extensions.Hosting;
 using Microsoft.OpenApi.Models;
 
-namespace LoL_stats
+namespace LoL.Stats.Api
 {
     public class Startup
     {
@@ -30,6 +32,9 @@ namespace LoL_stats
             services.AddAutoMapper(typeof(SummonersProfile));
 
             services.AddScoped<ISummonersService, SummonersService>();
+            services.AddScoped<IMatchesService, MatchesService>();
+
+            RiotConfiguration.SetApiKey(Configuration["RiotApiKey"]);
         }
 
         // This method gets called by the runtime. Use this method to configure the HTTP request pipeline.
