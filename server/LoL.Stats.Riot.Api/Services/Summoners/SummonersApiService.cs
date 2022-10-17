@@ -15,8 +15,16 @@ namespace LoL.Stats.Riot.Api.Services.Summoners
 
         public async Task<Summoner> GetSummonerByNameAsync(string name)
         {
-            var url = string.Format(Urls.GetSummonerByNameUrl, name);
-            return await riotClient.GetAsync<Summoner>(url);
+            try
+            {
+                var url = string.Format(Urls.GetSummonerByNameUrl, name);
+                return await riotClient.GetAsync<Summoner>(url);
+            }
+            catch (Exception)
+            {
+                // TODO: Log(ex);
+                return null;
+            }
         }
     }
 }

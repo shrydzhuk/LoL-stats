@@ -1,18 +1,45 @@
-﻿using LoL.Stats.Riot.Api.Dtos;
+﻿using LoL.Stats.Riot.Api.Core;
+using LoL.Stats.Riot.Api.Dtos;
 using LoL.Stats.Riot.Api.Models.Matches;
+using LoL.Stats.Riot.Api.Utils;
 
 namespace LoL.Stats.Riot.Api.Services.Matches
 {
     public class MatchesApiService : IMatchesApiService
     {
-        public Task<Match> GetMatchByIdAsync(string matchId)
+        private readonly RiotClient riotClient;
+
+        public MatchesApiService()
         {
-            throw new NotImplementedException();
+            riotClient = new RiotClient();
         }
 
-        public Task<IEnumerable<string>> GetMatchesBySummonerPuuidAsync(GetMatchesBySummonersPuuidRequest request)
+        public async Task<IEnumerable<string>> GetMatchesBySummonerPuuidAsync(GetMatchesBySummonersPuuidRequest request)
         {
-            throw new NotImplementedException();
+            try
+            {
+                var url = string.Format($"{Urls.GetMatchesBySummonerPuuidUrl}{request.GetQueryString()}", request.Puuid);
+                return await riotClient.GetAsync<IEnumerable<string>>(url);
+            }
+            catch (Exception ex)
+            {
+                // TODO: Log(ex);
+                return Array.Empty<string>();
+            }
+        }
+
+        public async Task<Match> GetMatchByIdAsync(string matchId)
+        {
+            try
+            {
+                var url = string.Format(Urls.GetMatchByIdUrl, matchId);
+                return await riotClient.GetAsync<Match>(url);
+            }
+            catch (Exception ex)
+            {
+                // TODO: Log(ex);
+                return null;
+            }
         }
     }
 }
